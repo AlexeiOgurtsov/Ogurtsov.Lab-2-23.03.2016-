@@ -10,6 +10,7 @@ void FillingMyMatrix(double **, int, double);
 double MySin(double, double);
 void FillingDeferenceMatrix(double**, double**, double**, int);
 double MaxElementInMatrix(double**, int);
+void FreeMemory(double**, int);
 
 int main(){
 	int n = 0;
@@ -35,6 +36,9 @@ int main(){
 	cout << "\t\t\t\t\t\t\t" << "Max Element: " << MaxElementInMatrix(c, n) << endl;
 	cout << "-----------------------------------------------------------" << endl;
 	system("pause");
+	FreeMemory(a, n);
+	FreeMemory(b, n);
+	FreeMemory(c, n);
 	return 0;
 }
 
@@ -152,4 +156,11 @@ double MaxElementInMatrix(double** c, int n)
 		}
 	}
 	return max;
+}
+
+void FreeMemory(double** a, int n)
+{
+	for (int i = 0; i < n; i++)
+		delete[]a[i];
+	delete[]a;
 }
