@@ -1,6 +1,8 @@
 #include <iostream>
 using namespace std;
 
+double const pi = 3.14159265359;
+
 double** CreateMatrix(int);
 void IsDataValidSize(int&);
 void IsDataValidEpsilon(double&);
@@ -108,7 +110,7 @@ void FillingLibraryMatrix(double **a, int n)
 		for (int j = 0; j < n; j++)
 		{
 			if (i == 2 * j)
-				a[i][j] = sin(2 * i*j) + sin(i) / (pow((i - j - 4), 3) + pow((i + j), 2));
+				a[i][j] = (sin(2 * i*j) + sin(i)) / (pow((i - j - 4), 3) + pow((i + j), 2));
 			else
 			{
 				a[i][j] = i;
@@ -124,7 +126,18 @@ void FillingMyMatrix(double **b, int n, double eps)
 		for (int j = 0; j < n; j++)
 		{
 			if (i == 2 * j)
-				b[i][j] = MySin((2 * i*j), eps) + MySin(i, eps) / (pow((i - j - 4), 3) + pow((i + j), 2));
+			{
+				double k = 2 * i*j, l = i;
+				while (k > pi)
+					k -= 2 * pi;
+				while (l > pi)
+					l -= 2*pi;
+				while (k < -pi)
+					k += 2*pi;
+				while (l < -pi)
+					l += 2*pi;
+				b[i][j] = (MySin((k), eps) + MySin(l, eps)) / (pow((i - j - 4), 3) + pow((i + j), 2));
+			}
 			else
 			{
 				b[i][j] = i;
