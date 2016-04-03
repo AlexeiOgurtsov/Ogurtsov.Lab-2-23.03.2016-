@@ -132,10 +132,6 @@ void FillingMyMatrix(double **b, int n, double eps)
 					k -= 2 * pi;
 				while (l > pi)
 					l -= 2*pi;
-				while (k < -pi)
-					k += 2*pi;
-				while (l < -pi)
-					l += 2*pi;
 				b[i][j] = (MySin((k), eps) + MySin(l, eps)) / (pow((i - j - 4), 3) + pow((i + j), 2));
 			}
 			else
@@ -177,3 +173,6 @@ void FreeMemory(double** a, int n)
 		delete[]a[i];
 	delete[]a;
 }
+
+//905529e-00
+//
